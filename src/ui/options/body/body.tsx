@@ -29,7 +29,7 @@ export default function Body(props: BodyProps): Malevic.Child {
     return (
         <body>
             <header>
-                <img id="logo" src="../assets/images/darkreader-type.svg" alt="Termtone" />
+                <img id="logo" src="../assets/images/termtone-type.svg" alt="Termtone" />
                 <h1 id="title">Settings</h1>
             </header>
             <TabPanel activeTabId={store.activeTabId} onTabChange={onSettingsTabChange}>

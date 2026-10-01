@@ -28,6 +28,10 @@ npm run debug
 
 Load the `build/debug/chrome` folder (or `build/debug/chrome-mv3` for MV3) as an unpacked extension in `chrome://extensions` or `edge://extensions`. Run `npm test` to run the tests.
 
+## Privacy
+
+Termtone does not collect, store or send any personal data, and it shows no ads. It makes no network requests on its own. If you enable the optional synchronization of site fixes and color schemes in the settings, it downloads the configuration files from this repository.
+
 ## Origin and license
 
 Termtone is a fork of [Dark Reader](https://github.com/darkreader/darkreader) and is distributed under the same [MIT license](LICENSE). Most of the theme engine and the website fixes come from the Dark Reader project and its contributors. Termtone is not affiliated with or endorsed by Dark Reader.

@@ -43,12 +43,12 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/diegogd/darkreader.git"
+    "url": "git+https://github.com/diegogd/termtone.git"
   },
   "author": "Diego Gomez Diaz",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/diegogd/darkreader/issues"
+    "url": "https://github.com/diegogd/termtone/issues"
   },
   "keywords": [
     "dark-theme",
@@ -59,7 +59,7 @@
     "accessibility",
     "eye-care"
   ],
-  "homepage": "https://github.com/diegogd/darkreader",
+  "homepage": "https://github.com/diegogd/termtone",
   "dependencies": {
     "malevic": "0.20.3"
   },

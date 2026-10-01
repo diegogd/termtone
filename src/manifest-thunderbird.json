@@ -1,7 +1,7 @@
 {
     "applications": {
         "gecko": {
-            "id": "addon@darkreader.org",
+            "id": "termtone@diegogd.github.io",
             "strict_min_version": "78.0a1"
         }
     },

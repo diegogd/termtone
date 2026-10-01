@@ -1,7 +1,7 @@
 {
-  "name": "darkreader",
+  "name": "termtone",
   "version": "4.9.133",
-  "description": "Dark mode for every website",
+  "description": "Dark mode for every website, with terminal color schemes",
   "scripts": {
     "api": "node --max-old-space-size=3072 tasks/cli.js build --api",
     "build": "node --max-old-space-size=3072 tasks/cli.js build --release",
@@ -43,12 +43,12 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/darkreader/darkreader.git"
+    "url": "git+https://github.com/diegogd/darkreader.git"
   },
-  "author": "Alexander Shutau <darkreaderapp@gmail.com> (https://darkreader.org/)",
+  "author": "Diego Gomez Diaz",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/darkreader/darkreader/issues"
+    "url": "https://github.com/diegogd/darkreader/issues"
   },
   "keywords": [
     "dark-theme",
@@ -59,11 +59,7 @@
     "accessibility",
     "eye-care"
   ],
-  "homepage": "https://darkreader.org/",
-  "funding": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/darkreader/donate"
-  },
+  "homepage": "https://github.com/diegogd/darkreader",
   "dependencies": {
     "malevic": "0.20.3"
   },

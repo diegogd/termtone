@@ -12,6 +12,8 @@ interface SelectProps {
     options: {
         [value: string]: Malevic.Child;
     };
+    // When true, ArrowUp and ArrowDown on the focused textbox select the previous and next option
+    arrowKeys?: boolean;
     onChange: (value: string) => void;
 }
 
@@ -63,6 +65,22 @@ function Select(props: SelectProps) {
             input.blur();
             collapseList();
             props.onChange(value);
+        }
+    }
+
+    function onKeyDown(e: KeyboardEvent) {
+        if (!props.arrowKeys || (e.key !== 'ArrowDown' && e.key !== 'ArrowUp')) {
+            return;
+        }
+        e.preventDefault();
+        const current = values.indexOf(props.value);
+        const step = e.key === 'ArrowDown' ? 1 : -1;
+        const next = current < 0 ? 0 : Math.min(Math.max(current + step, 0), values.length - 1);
+        if (next !== current) {
+            props.onChange(values[next]);
+            if (state.isExpanded) {
+                setState({focusedIndex: next});
+            }
         }
     }
 
@@ -128,6 +146,7 @@ function Select(props: SelectProps) {
                     value={props.value}
                     oninput={onTextInput}
                     onkeypress={onKeyPress}
+                    onkeydown={onKeyDown}
                 />
                 <Button
                     class="select__expand"

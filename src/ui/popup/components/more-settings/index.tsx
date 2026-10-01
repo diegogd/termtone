@@ -2,11 +2,13 @@ import {m} from 'malevic';
 
 import type {ExtWrapper, Theme} from '../../../../definitions';
 import {getLocalMessage} from '../../../../utils/locales';
+import {ThemeEngine} from '../../../../generators/theme-engines';
 import {isFirefox} from '../../../../utils/platform';
 import {isURLInList} from '../../../../utils/url';
 import {Button, Toggle} from '../../../controls';
 import {SettingsIcon} from '../../../icons';
 import {openExtensionPage} from '../../../utils';
+import ColorSchemeSettings from '../color-scheme-settings';
 import CustomSettingsToggle from '../custom-settings-toggle';
 import EngineSwitch from '../engine-switch';
 import FontSettings from '../font-settings';
@@ -34,6 +36,11 @@ export default function MoreSettings({data, actions, fonts}: ExtWrapper & {fonts
             <div class="more-settings__section">
                 <FontSettings config={theme} fonts={fonts} onChange={setConfig} />
             </div>
+            {theme.engine === ThemeEngine.dynamicTheme ? (
+                <div class="more-settings__section">
+                    <ColorSchemeSettings config={theme} colorSchemes={data.colorScheme} onChange={setConfig} />
+                </div>
+            ) : null}
             <div class="more-settings__section">
                 <EngineSwitch engine={theme.engine} onChange={(engine) => setConfig({engine})} />
             </div>

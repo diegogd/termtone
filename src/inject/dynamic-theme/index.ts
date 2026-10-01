@@ -306,8 +306,60 @@ function createShadowStaticStyleOverrides(root: ShadowRoot) {
     }
 }
 
+/**
+ * Returns a CSS filter value for content which is drawn by the page
+ * as pixels (e.g. canvas) and cannot be recolored through CSS.
+ * The content is inverted in dark mode, and then white is mapped
+ * to the theme background color and black to the theme text color.
+ */
+function getRemapFilterValue(): string {
+    const white = parseColorWithCache('white')!;
+    const black = parseColorWithCache('black')!;
+    const background = parseColorWithCache(modifyBackgroundColor(white, theme!, false));
+    const text = parseColorWithCache(modifyForegroundColor(black, theme!, false));
+    if (!background || !text) {
+        return 'none';
+    }
+    const SVG_NS = 'http://www.w3.org/2000/svg';
+    // Inline SVG is used instead of a data URL because the page CSP may block the latter.
+    // DOM methods are used because the page may require Trusted Types.
+    let svg = document.querySelector<SVGSVGElement>('svg.darkreader--remap');
+    if (!svg) {
+        svg = document.createElementNS(SVG_NS, 'svg');
+        svg.setAttribute('class', 'darkreader darkreader--remap');
+        svg.setAttribute('width', '0');
+        svg.setAttribute('height', '0');
+        svg.style.position = 'absolute';
+        svg.style.pointerEvents = 'none';
+        const filter = document.createElementNS(SVG_NS, 'filter');
+        filter.setAttribute('id', 'darkreader-remap-filter');
+        filter.setAttribute('color-interpolation-filters', 'sRGB');
+        const transfer = document.createElementNS(SVG_NS, 'feComponentTransfer');
+        ['R', 'G', 'B'].forEach((channel) => {
+            const func = document.createElementNS(SVG_NS, `feFunc${channel}`);
+            func.setAttribute('type', 'linear');
+            transfer.appendChild(func);
+        });
+        filter.appendChild(transfer);
+        svg.appendChild(filter);
+        document.documentElement.appendChild(svg);
+    }
+    const funcs = svg.querySelectorAll('feComponentTransfer > *');
+    (['r', 'g', 'b'] as const).forEach((channel, i) => {
+        const from = background[channel] / 255;
+        const to = text[channel] / 255;
+        funcs[i].setAttribute('slope', String(to - from));
+        funcs[i].setAttribute('intercept', String(from));
+    });
+    const remap = 'url(#darkreader-remap-filter)';
+    return theme!.mode === 1 ? `invert(100%) hue-rotate(180deg) ${remap}` : remap;
+}
+
 function replaceCSSTemplates($cssText: string) {
     return $cssText.replace(/\${(.+?)}/g, (_, $color) => {
+        if ($color === 'remap-filter') {
+            return getRemapFilterValue();
+        }
         const color = parseColorWithCache($color);
         if (color) {
             const lightness = getSRGBLightness(color.r, color.g, color.b);

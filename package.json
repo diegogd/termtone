@@ -1,7 +1,7 @@
 {
-  "name": "darkreader",
+  "name": "termtone",
   "version": "4.9.133",
-  "description": "Dark mode for every website",
+  "description": "Dark mode for every website, with terminal color schemes",
   "scripts": {
     "api": "node --max-old-space-size=3072 tasks/cli.js build --api",
     "build": "node --max-old-space-size=3072 tasks/cli.js build --release",
@@ -9,6 +9,7 @@
     "build:firefox": "node --max-old-space-size=3072 tasks/cli.js build --release --firefox",
     "build:plus": "node --max-old-space-size=3072 tasks/cli.js build --chrome-mv3 --plus --release",
     "code-style": "npm run lint",
+    "color-schemes": "node tasks/color-schemes.js",
     "config-cleanup": "node --max-http-header-size=131072 tasks/ping.js dark-sites detector-hints dynamic-theme-fixes inversion-fixes",
     "debug": "node --max-old-space-size=3072 tasks/cli.js build --debug",
     "debug:watch": "node --max-old-space-size=3072 tasks/cli.js build --debug --watch --chrome --firefox",
@@ -42,12 +43,12 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/darkreader/darkreader.git"
+    "url": "git+https://github.com/diegogd/termtone.git"
   },
-  "author": "Alexander Shutau <darkreaderapp@gmail.com> (https://darkreader.org/)",
+  "author": "Diego Gomez Diaz",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/darkreader/darkreader/issues"
+    "url": "https://github.com/diegogd/termtone/issues"
   },
   "keywords": [
     "dark-theme",
@@ -58,11 +59,7 @@
     "accessibility",
     "eye-care"
   ],
-  "homepage": "https://darkreader.org/",
-  "funding": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/darkreader/donate"
-  },
+  "homepage": "https://github.com/diegogd/termtone",
   "dependencies": {
     "malevic": "0.20.3"
   },

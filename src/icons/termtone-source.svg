@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <title>Termtone terminal palette</title>
+  <rect x="1" y="1" width="14" height="14" rx="3" fill="#18232f" stroke="#91ead1" stroke-width="1"/>
+  <path d="M4.25 4.5 7 6.75 4.25 9" fill="none" stroke="#91ead1" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="9" y="7.5" width="2.75" height="1.5" rx=".35" fill="#e7f0f6"/>
+  <rect x="4" y="11" width="2.25" height="1.75" rx=".35" fill="#91ead1"/>
+  <rect x="6.875" y="11" width="2.25" height="1.75" rx=".35" fill="#b4a1f5"/>
+  <rect x="9.75" y="11" width="2.25" height="1.75" rx=".35" fill="#f2bd79"/>
+</svg>
